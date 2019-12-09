@@ -10,6 +10,7 @@ import Index from './components/index.component';
 import Login from './components/login';
 import Register from './components/register';
 import Users from './components/users';
+import Updateprofile from './components/updateprofile'
 
 
 class App extends Component {
@@ -62,7 +63,12 @@ class App extends Component {
                 <li className="nav-item">
                   <Link to={'/index'} className="nav-link">Index</Link>
                 </li>
-                
+                { localStorage.token &&
+                  
+                  <li className="nav-item">
+                  <Link to={'/profile'} className="nav-link">Profile</Link>
+                </li>
+                }
                 
               </ul>
             </div>
@@ -73,6 +79,7 @@ class App extends Component {
               <Route path='/edit/:id' component={ Edit } />
               <Route path='/index' component={ Index } />
               <Route path='/users' component={ Users } />
+              <Route path='/profile' component={ Updateprofile } />
           </Switch>
         </div>
       </Router>
