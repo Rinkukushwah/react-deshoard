@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ImageUploader from 'react-images-upload';
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ export default class Register extends Component {
           password_confirmation : '',
           first_name: '',
           last_name: '',
-          image: '',
+          image: [],
           phone: '',
           country: ''
       }
@@ -24,6 +25,11 @@ export default class Register extends Component {
     this.onChangeCountry = this.onChangeCountry.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  onDrop(picture) {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
 
   onChangeEmail(e) {
     this.setState({
@@ -114,6 +120,7 @@ export default class Register extends Component {
   }
   render() {
     return (
+      
       <div style={{marginTop: 10}}>
         <h3>Profile</h3>
         <form onSubmit={this.onSubmit}>
