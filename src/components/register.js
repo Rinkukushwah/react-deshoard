@@ -42,7 +42,7 @@ export default class Register extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-    axios.post(`http://localhost:3001/api/v1/sign_up`, user, {
+    axios.post(`https://react-demo-apprails.herokuapp.com/api/v1/sign_up`, user, {
     headers: headers
     })
     .then(user => {

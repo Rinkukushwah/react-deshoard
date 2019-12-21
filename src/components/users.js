@@ -14,7 +14,7 @@ class Users extends React.Component {
       'Content-Type': 'application/json',
       'User-Token': 'nFsvWbmoxx6-n2jHBLKv'
     }
-    axios.get(`http://localhost:3001/api/v1/users`, {
+    axios.get(`https://react-demo-apprails.herokuapp.com/api/v1/users`, {
     headers: headers
     })
     .then(result => {

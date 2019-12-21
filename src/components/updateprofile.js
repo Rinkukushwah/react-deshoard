@@ -93,7 +93,7 @@ export default class Register extends Component {
       'Content-Type': 'application/json',
       'User-Token': localStorage.token
     }
-    axios.post(`http://localhost:3001/api/v1/update_account`, user, {
+    axios.post(`https://react-demo-apprails.herokuapp.com/api/v1/update_account`, user, {
     headers: headers
     })
     .then(user => {

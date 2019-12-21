@@ -33,7 +33,7 @@ export default class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-    axios.post(`http://localhost:3001/api/v1/sign_in`, user, {
+    axios.post(`https://react-demo-apprails.herokuapp.com/api/v1/sign_in`, user, {
     headers: headers
     })
     .then(user => {
