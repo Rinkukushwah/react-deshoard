@@ -12,7 +12,7 @@ class Users extends React.Component {
   componentDidMount() {
     const headers = {
       'Content-Type': 'application/json',
-      'User-Token': 'nFsvWbmoxx6-n2jHBLKv'
+      'User-Token': localStorage.token
     }
     axios.get(`https://react-demo-apprails.herokuapp.com/api/v1/users`, {
     headers: headers
