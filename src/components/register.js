@@ -50,7 +50,7 @@ export default class Register extends Component {
         // var token = user.data.data.user.authentication_token
         // localStorage.setItem('token', token);
         alert("Successfuly Signup");
-        window.location = "/users"
+        window.location = "/login"
       }
       else if (user.data.data.errors.email) {
         alert("email has already been taken");
