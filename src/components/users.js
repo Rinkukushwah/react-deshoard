@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 class Users extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class Users extends React.Component {
       'Content-Type': 'application/json',
       'User-Token': localStorage.token
     }
-    axios.get(`https://react-demo-apprails.herokuapp.com/api/v1/users`, {
+    axios.get(`http://localhost:3001/api/v1/users`, {
     headers: headers
     })
     .then(result => {
@@ -43,6 +45,7 @@ class Users extends React.Component {
                 <th>Last name</th>
                 <th>Address</th>
                 <th>Country</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -54,6 +57,7 @@ class Users extends React.Component {
                   <td>{user.last_name}</td>
                   <td>{user.address}</td>
                   <td>{user.country}</td>
+                  <td><Link to={"/edit/"+user.id} className="btn btn-primary">Edit</Link></td>
                 </tr>
               ))}
             </tbody>

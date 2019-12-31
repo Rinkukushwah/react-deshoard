@@ -78,6 +78,16 @@ export default class Register extends Component {
     });
   }
 
+  componentDidMount(){
+    axios.get(`http://localhost:3001/api/v1/profile?token=${localStorage.token}`)
+    .then(user=>{
+      this.setState({first_name: user.data.first_name, last_name: user.data.last_name, phone: user.data.phone, country: user.data.country, email: user.data.email});
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
+
   onSubmit(event) {
     var email = this.state.email
     var password = this.state.password
@@ -93,7 +103,7 @@ export default class Register extends Component {
       'Content-Type': 'application/json',
       'User-Token': localStorage.token
     }
-    axios.post(`https://react-demo-apprails.herokuapp.com/api/v1/update_account`, user, {
+    axios.post(`http://localhost:3001/api/v1/update_account`, user, {
     headers: headers
     })
     .then(user => {

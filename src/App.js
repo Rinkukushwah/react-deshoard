@@ -11,7 +11,7 @@ import Login from './components/login';
 import Register from './components/register';
 import Users from './components/users';
 import Updateprofile from './components/updateprofile'
-
+import Routes from './Routes';
 
 class App extends Component {
   Logout() {
