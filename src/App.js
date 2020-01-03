@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import  PrivateRoute from './PrivateRoute';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 
@@ -11,7 +9,10 @@ import Login from './components/login';
 import Register from './components/register';
 import Users from './components/users';
 import Updateprofile from './components/updateprofile'
-import Routes from './Routes';
+import Posts from './components/posts/index';
+import PostDetails from './components/posts/PostDetails';
+import CreatePost from './components/posts/CreatePost';
+import UpdatePost from './components/posts/UpdatePost';
 
 class App extends Component {
   Logout() {
@@ -20,20 +21,11 @@ class App extends Component {
     alert("Logout successfully");
   }
   render() {
-    // const isLoggedIn = (localStorage.token);
-    // let button;
-    // if (isLoggedIn) {
-    //   button = <Users onClick={this.handleLogoutClick} />;
-    // } else {
-    //   button = <Login onClick={this.handleLoginClick} />;
-    // }
-
-    // debugger
     return (
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/'} className="navbar-brand">Home</Link>
+            <Link from="/" to={'/index'} className="navbar-brand">Home</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 { localStorage.token &&
@@ -59,17 +51,18 @@ class App extends Component {
                     <Link to={'/register'} className="nav-link">Register</Link>
                   </li>
                 }
-                              
-                <li className="nav-item">
-                  <Link to={'/index'} className="nav-link">Index</Link>
-                </li>
                 { localStorage.token &&
                   
                   <li className="nav-item">
                   <Link to={'/profile'} className="nav-link">Profile</Link>
                 </li>
                 }
-                
+                { localStorage.token &&
+                  
+                  <li className="nav-item">
+                  <Link to={'/posts'} className="nav-link">Posts</Link>
+                </li>
+                }
               </ul>
             </div>
           </nav> <br/>
@@ -80,6 +73,26 @@ class App extends Component {
               <Route path='/index' component={ Index } />
               <Route path='/users' component={ Users } />
               <Route path='/profile' component={ Updateprofile } />
+              <Route
+                path="/posts/new"
+                exact
+                component={CreatePost}
+               />
+              <Route
+                path="/posts/:id"
+                exact
+                component={PostDetails}
+               />
+              <Route
+                path="/posts/:id/edit"
+                exact
+                component={UpdatePost}
+               />
+               <Route
+                path="/posts"
+                exact
+                component={Posts}
+               />
           </Switch>
         </div>
       </Router>

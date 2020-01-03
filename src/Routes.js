@@ -1,16 +1,13 @@
 // app/javascript/routes.js
-import React from 'react';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Switch, Route,} from 'react-router-dom';
 import Posts from './components/posts/index';
 import PostDetails from './components/posts/PostDetails';
 import CreatePost from './components/posts/CreatePost';
 import UpdatePost from './components/posts/UpdatePost';
 
-export default () => {
-  return (
+export default class Routes extends Component {
+  return (){
     <Switch>
       <Route exact path="/">
         <Posts />
@@ -31,5 +28,5 @@ export default () => {
         component={UpdatePost}
        />
     </Switch>
-  );
+  }
 }

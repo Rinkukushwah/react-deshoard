@@ -3,35 +3,20 @@ import axios from 'axios';
 export default class Register extends Component {
   constructor(props) {
     super(props);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
           email: '',
           password: '',
           password_confirmation : ''
       }
 
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangePasswordConfirmation = this.onChangePasswordConfirmation.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value
-    });
-  }
-
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
-  onChangePasswordConfirmation(e) {
-    this.setState({
-      password_confirmation: e.target.value
-    });
-  }
+  onChangeHandler(event){
+        const {name, value} =  event.target;
+    this.setState({ [name]: value });
+    }
 
   onSubmit(event) {
     var email = this.state.email
@@ -70,15 +55,15 @@ export default class Register extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Email:  </label>
-            <input value={this.state.email} onChange={this.onChangeEmail}  type="email" className="form-control"/>
+            <input value={this.state.email} onChange={this.onChangeHandler}  type="email" name="email" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Password: </label>
-            <input value={this.state.password} onChange={this.onChangePassword}  type="text" className="form-control"/>
+            <input name="password" value={this.state.password} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Re-enter Password: </label>
-            <input value={this.state.password_confirmation} onChange={this.onChangePasswordConfirmation}  type="text" className="form-control"/>
+            <input name="password_confirmation" value={this.state.password_confirmation} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <input type="submit" value="Register" className="btn btn-primary"/>

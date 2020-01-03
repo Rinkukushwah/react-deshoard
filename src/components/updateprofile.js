@@ -15,66 +15,19 @@ export default class Register extends Component {
           country: ''
       }
 
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangePasswordConfirmation = this.onChangePasswordConfirmation.bind(this);
-    this.onChangeFirstName = this.onChangeFirstName.bind(this);
-    this.onChangeLastName = this.onChangeLastName.bind(this);
-    this.onChangeImage = this.onChangeImage.bind(this);
-    this.onChangePhone = this.onChangePhone.bind(this);
-    this.onChangeCountry = this.onChangeCountry.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   onDrop(picture) {
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
-    }
-
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value
-    });
+      this.setState({
+          pictures: this.state.pictures.concat(picture),
+      });
   }
 
-  onChangePassword(e) {
+  onChangeHandler(e) {
+    const {name, value} = e.target;
     this.setState({
-      password: e.target.value
-    });
-  }
-
-  onChangePasswordConfirmation(e) {
-    this.setState({
-      password_confirmation: e.target.value
-    });
-  }
-  onChangeFirstName(e) {
-    this.setState({
-      first_name: e.target.value
-    });
-  }
-
-  onChangeLastName(e) {
-    this.setState({
-      last_name: e.target.value
-    });
-  }
-
-  onChangeImage(e) {
-    this.setState({
-      image: e.target.value
-    });
-  }
-
-  onChangePhone(e) {
-    this.setState({
-      phone: e.target.value
-    });
-  }
-
-  onChangeCountry(e) {
-    this.setState({
-      country: e.target.value
+      [name]: value
     });
   }
 
@@ -89,15 +42,17 @@ export default class Register extends Component {
   }
 
   onSubmit(event) {
-    var email = this.state.email
-    var password = this.state.password
-    var password_confirmation = this.state.password_confirmation
-    var first_name = this.state.first_name
-    var last_name = this.state.last_name
-    var image = this.state.image
-    var phone = this.state.phone
-    var country = this.state.country
-    var user = {email: email, password: password, password_confirmation: password_confirmation, first_name: first_name, last_name: last_name, image: image, phone: phone, country: country}
+    
+    var user = {
+          email: this.state.email,
+          password: this.state.password, 
+          password_confirmation: this.state.password_confirmation, 
+          first_name: this.state.first_name, 
+          last_name: this.state.last_name, 
+          image: this.state.image, 
+          phone: this.state.phone, 
+          country: this.state.country
+     }
     event.preventDefault();
     const headers = {
       'Content-Type': 'application/json',
@@ -136,35 +91,35 @@ export default class Register extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>First Name:  </label>
-            <input value={this.state.first_name} onChange={this.onChangeFirstName}  type="text" className="form-control"/>
+            <input name = "first_name" value={this.state.first_name} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Last Name:  </label>
-            <input value={this.state.last_name} onChange={this.onChangeLastName}  type="text" className="form-control"/>
+            <input name = "last_name" value={this.state.last_name} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>image: </label>
-            <input value={this.state.image} onChange={this.onChangeImage}  type="file"/>
+            <input name = "image" value={this.state.image} onChange={this.onChangeHandler}  type="file"/>
           </div>
           <div className="form-group">
             <label>Phone: </label>
-            <input value={this.state.phone} onChange={this.onChangePhone}  type="text" className="form-control"/>
+            <input name ="phone" value={this.state.phone} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Country: </label>
-            <input value={this.state.country} onChange={this.onChangeCountry}  type="text" className="form-control"/>
+            <input name ="country" value={this.state.country} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Email:  </label>
-            <input value={this.state.email} onChange={this.onChangeEmail}  type="email" className="form-control"/>
+            <input name ="email" value={this.state.email} onChange={this.onChangeHandler}  type="email" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Password: </label>
-            <input value={this.state.password} onChange={this.onChangePassword}  type="text" className="form-control"/>
+            <input name ="password" value={this.state.password} onChange={this.onChangeHandler}  type="password" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Re-enter Password: </label>
-            <input value={this.state.password_confirmation} onChange={this.onChangePasswordConfirmation}  type="text" className="form-control"/>
+            <input name ="password_confirmation" value={this.state.password_confirmation} onChange={this.onChangeHandler}  type="password" className="form-control"/>
           </div>
           <div className="form-group">
             <input type="submit" value="Register" className="btn btn-primary"/>
