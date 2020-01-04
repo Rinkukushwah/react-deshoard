@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import Moment from 'react-moment';
 class Users extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +45,7 @@ class Users extends React.Component {
                 <th>Last name</th>
                 <th>Address</th>
                 <th>Country</th>
+                <th>DOB</th>
                 <th></th>
               </tr>
             </thead>
@@ -57,6 +58,7 @@ class Users extends React.Component {
                   <td>{user.last_name}</td>
                   <td>{user.address}</td>
                   <td>{user.country}</td>
+                  <td><Moment format="DD-MM-YYYY" >{user.dob}</Moment></td>
                   <td><Link to={"/edit/"+user.id} className="btn btn-primary">Edit</Link></td>
                 </tr>
               ))}
