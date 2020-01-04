@@ -31,7 +31,7 @@ class App extends Component {
                 { localStorage.token &&
                   
                   <li className="nav-item">
-                    <Link onClick={this.Logout} className="nav-link">Logout</Link>
+                    <button onClick={this.Logout} className="nav-link" style={{border: "none", background: "transparent", cursor: "pointer"}}>Logout</button>
                   </li>
                 }
                 { localStorage.token &&
