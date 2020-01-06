@@ -52,7 +52,7 @@ export default class Register extends Component {
 
     axios.get(`http://localhost:3001/api/v1/profile`, {headers: headers})
     .then(user=>{
-      this.setState({first_name: user.data.first_name, last_name: user.data.last_name, phone: user.data.phone, country: user.data.country, email: user.data.email, image: user.data.image.url, address: user.data.address});
+      this.setState({first_name: user.data.first_name, last_name: user.data.last_name, phone: user.data.phone, country: user.data.country, email: user.data.email, image: user.data.image.url, address: user.data.address, dob: user.data.dob});
     })
     .catch(function(error){
       console.log(error);

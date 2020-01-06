@@ -39,12 +39,21 @@ export default class Login extends Component {
     .then(user => {
       if (user.data.data.user) {
         var token = user.data.data.user.authentication_token
+        var get_user ={
+          first_name: user.data.data.user.first_name, last_name: user.data.data.user.last_name, phone: user.data.data.user.phone, country: user.data.data.user.country, email: user.data.data.user.email, image: user.data.data.user.image.url, address: user.data.data.user.address
+        }
+        localStorage.setItem('current_user', JSON.stringify(get_user));
         localStorage.setItem('token', token);
-        alert("Login successfully");
-        window.location = "/users"
+        alert(`${user.data.message}`);
+        if (user.data.data.user.role == "admin"){
+          window.location = "/users"
+        }
+        else {
+        window.location = "/posts"
+        }
       }
       else{
-        alert("Invalid email or password");
+        alert(`${user.data.message}`);
       } 
       // history.push("/users")
       // this.setState({

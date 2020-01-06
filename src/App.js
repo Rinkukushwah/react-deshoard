@@ -63,6 +63,12 @@ class App extends Component {
                   <Link to={'/posts'} className="nav-link">Posts</Link>
                 </li>
                 }
+
+                { localStorage.token &&
+                  <li className="nav-item">
+                  <Link className="nav-link"><b>Owner - {JSON.parse(localStorage.current_user).email}</b></Link>
+                </li>
+                }
               </ul>
             </div>
           </nav> <br/>

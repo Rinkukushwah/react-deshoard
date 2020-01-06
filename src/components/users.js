@@ -20,9 +20,15 @@ class Users extends React.Component {
     headers: headers
     })
     .then(result => {
-      this.setState({
-        all_users: result.data.data.users
-      });
+      if (result.data.data.users){
+        this.setState({
+          all_users: result.data.data.users
+        });
+      }
+      else {
+        window.location = "/posts"
+        alert(`${result.data.message}`);
+      }
     })
   } 
   render() {
