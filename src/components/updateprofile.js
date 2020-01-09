@@ -89,7 +89,10 @@ export default class Register extends Component {
       'User-Token': localStorage.token
     }
     axios.post(`http://localhost:3001/api/v1/update_account`, data, {
-    headers: headers
+    headers: headers,
+    onUploadProgress: progressEvent => {
+      console.log("Upload Progress " + Math.round(progressEvent.loaded / progressEvent.total * 100) + "%")
+      }
     })
     .then(user => {
       if (user.data.data.user) {
