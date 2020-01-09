@@ -48,6 +48,7 @@ class Index extends React.Component {
       return(
         <div>
           <h2>Post List</h2>
+          <Link to={"/posts/new"} className="btn btn-primary">Add post</Link>
           <table className="table">
             <thead>
               <tr>

@@ -13,14 +13,14 @@ export default class Register extends Component {
           password_confirmation : '',
           first_name: '',
           last_name: '',
-          image: [],
           phone: '',
           country: '',
           dob: '',
           selectedDay: undefined,
-          address: ''
+          address: '',
+          selectedFile: null
       }
-
+    this.handleselectedFile = this.handleselectedFile.bind(this); 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -59,26 +59,36 @@ export default class Register extends Component {
     })
   }
 
+  handleselectedFile (event) {
+    console.log(event.target.files[0])
+    this.setState({
+      selectedFile: event.target.files[0],
+      loaded: 0,
+    })
+  }
+
+
   onSubmit(event) {
     var dateAbc = `${this.state.selectedDay.getFullYear()}-${this.state.selectedDay.getMonth() + 1}-${this.state.selectedDay.getDate()}`;
-        console.log(dateAbc);
-    var user = {
-          email: this.state.email,
-          password: this.state.password, 
-          password_confirmation: this.state.password_confirmation, 
-          first_name: this.state.first_name, 
-          last_name: this.state.last_name, 
-          image: this.state.image, 
-          phone: this.state.phone, 
-          country: this.state.country,
-          dob: dateAbc
-     }
+      console.log(dateAbc);
+    const data = new FormData()
+    data.append('image', this.state.selectedFile, this.state.selectedFile.name)
+    data.append('image', this.state.selectedFile, this.state.selectedFile.name);
+    data.append('email', this.state.email);
+    data.append('password', this.state.password);
+    data.append('password_confirmation', this.state.password_confirmation);
+    data.append('first_name', this.state.first_name);
+    data.append('last_name', this.state.last_name);
+    data.append('phone', this.state.phone);
+    data.append('country', this.state.country);
+    data.append('address', this.state.address);
+    data.append('dob', dateAbc);
     event.preventDefault();
     const headers = {
       'Content-Type': 'application/json',
       'User-Token': localStorage.token
     }
-    axios.post(`http://localhost:3001/api/v1/update_account`, user, {
+    axios.post(`http://localhost:3001/api/v1/update_account`, data, {
     headers: headers
     })
     .then(user => {
@@ -111,13 +121,13 @@ export default class Register extends Component {
       <div style={{marginTop: 10}}>
         <h3>Profile</h3>
 
-        <form onSubmit={this.onSubmit}>
+        <form action="#!" onSubmit={this.onSubmit} noValidate>
           <div className="form-group">
             <label>First Name:  </label>
             <input name="first_name" value={this.state.first_name} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
-            <DayPickerInput name="dob" inputProps={{ className: 'form-control' }} onDayChange={this.handleDayChange}  value={this.state.dob} placeholder='Enter date' />
+            <DayPickerInput name="dob" inputProps={{ className: 'form-control' }} onDayChange={this.handleDayChange} value={this.state.dob} placeholder='Enter date' />
           </div>
           <div className="form-group">
             <label>Last Name:  </label>
@@ -125,11 +135,15 @@ export default class Register extends Component {
           </div>
           <div className="form-group">
             <label>image: </label>
-            <input name="image" value={this.state.image} onChange={this.onChangeHandler}  type="file"/>
+            <input type="file" onChange={this.handleselectedFile} /><br/>
           </div>
           <div className="form-group">
             <label>Phone: </label>
             <input name="phone" value={this.state.phone} onChange={this.onChangeHandler}  type="text" className="form-control"/>
+          </div>
+          <div className="form-group">
+            <label>Address: </label>
+            <input name="address" value={this.state.address} onChange={this.onChangeHandler}  type="text" className="form-control"/>
           </div>
           <div className="form-group">
             <label>Country: </label>
@@ -148,7 +162,7 @@ export default class Register extends Component {
             <input name="password_confirmation" value={this.state.password_confirmation} onChange={this.onChangeHandler}  type="password" className="form-control"/>
           </div>
           <div className="form-group">
-            <input type="submit" value="Register" className="btn btn-primary"/>
+            <button className="btn btn-primary" type="submit">Create</button>
           </div>
         </form>
       </div>

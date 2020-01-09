@@ -12,10 +12,12 @@
     "react-day-picker": "^7.4.0",
     "react-dom": "^16.12.0",
     "react-flash-message": "^1.0.2",
+    "react-image": "^2.2.2",
     "react-images-upload": "^1.2.7",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "0.9.x"
+    "react-scripts": "0.9.x",
+    "strftime": "^0.10.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -52,6 +52,7 @@ class Users extends React.Component {
                 <th>Address</th>
                 <th>Country</th>
                 <th>DOB</th>
+                <th>Image</th>
                 <th></th>
               </tr>
             </thead>
@@ -65,6 +66,9 @@ class Users extends React.Component {
                   <td>{user.address}</td>
                   <td>{user.country}</td>
                   <td><Moment format="DD-MM-YYYY" >{user.dob}</Moment></td>
+                  <td>
+                  <img style={{width: 100, height: 100}} className='tc br3' alt='none' src={'http://localhost:3001' + user.image.url} /> 
+                  </td>
                   <td><Link to={"/edit/"+user.id} className="btn btn-primary">Edit</Link></td>
                 </tr>
               ))}
